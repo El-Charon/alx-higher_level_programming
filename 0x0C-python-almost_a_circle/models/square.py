@@ -1,12 +1,14 @@
-#!/usr/bin/python3
-"""Defines a class Square"""
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
+"""Defines a class Square"""
 
 from inspect import classify_class_attrs
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
+
     """Class that defines properties of Square.
 
      Attributes:
@@ -16,7 +18,14 @@ class Square(Rectangle):
         y (int): y.
         id (int): identity of square.
     """
-    def __init__(self, size, x=0, y=0, id=None):
+
+    def __init__(
+        self,
+        size,
+        x=0,
+        y=0,
+        id=None,
+        ):
         """Creates new instances of Square
 
         Args:
@@ -25,12 +34,14 @@ class Square(Rectangle):
             y (int, optional): y. Defaults to 0.
             id (int, optional): Identity number of square. Defaults to None.
         """
+
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
         """Prints square"""
-        return ("[Square] ({}) {:d}/{:d} - {:d}".
-                format(self.id, self.x, self.y, self.size))
+
+        return '[Square] ({}) {:d}/{:d} - {:d}'.format(self.id, self.x,
+                self.y, self.size)
 
     @property
     def size(self):
@@ -39,6 +50,7 @@ class Square(Rectangle):
         Returns:
             int: size of one side of square.
         """
+
         return self.width
 
     @size.setter
@@ -50,11 +62,12 @@ class Square(Rectangle):
             TypeError: if width is not an integer.
             ValueError: if width is less than or equal to zero.
         """
+
         if not isinstance(value, int):
-            raise TypeError("width must be an integer")
+            raise TypeError('width must be an integer')
         if value <= 0:
-            raise ValueError("width must be > 0")
-        
+            raise ValueError('width must be > 0')
+
         self.width = value
         self.height = value
 
@@ -65,6 +78,7 @@ class Square(Rectangle):
             *args (tuple): arguments.
             **kwargs (dict): double pointer to a dictionary.
         """
+
         if args is not None and len(args) is not 0:
             list_atr = ['id', 'size', 'x', 'y']
             for i in range(len(args)):
@@ -74,7 +88,7 @@ class Square(Rectangle):
                 else:
                     setattr(self, list_atr[i], args[i])
         else:
-            for key, value in kwargs.items():
+            for (key, value) in kwargs.items():
                 if key == 'size':
                     setattr(self, 'width', value)
                     setattr(self, 'height', value)
@@ -87,6 +101,7 @@ class Square(Rectangle):
         Returns:
             dict: square.
         """
+
         dict1 = self.__dict__
         dict2 = {}
         dict2['id'] = dict1['id']
